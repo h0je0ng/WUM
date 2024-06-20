@@ -50,14 +50,16 @@
 			</tr>
 			<tr>
 				<td  width="70" align="center"> 추천수 </td>
-				<td align="center">
-					<span th:text="${requireDto.requireLike}"/>
+
+				<td align="center" >
+					<a th:href="|/require/recommend?requireSeq=${requireSeq}|" ><img th:src="@{/image/recommend.png}"/></a>
+					<p th:text="${requireDto.requireLike}"/><br>
 				</td>
 			</tr>
 			<tr>
 				<td colspan="2" align="center">
 					<a th:href="|/require/update?requireSeq=${requireDto.requireSeq}&userSeq=${requireDto.userSeq}|">수정</a>
-					<a th:href="|/require/delete?requireSeq=${requireDto.requireSeq}&userSeq=${requireDto.userSeq}|" >삭제</a>
+					<a th:href="|/require/delete?requireSeq=${requireDto.requireSeq}&userSeq=${requireDto.userSeq}|">삭제</a>
 					<a th:href="|/require|" >목록</a>
 				</td>
 			</tr>

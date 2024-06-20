@@ -16,42 +16,42 @@
 
     <div class="wrap" layout:fragment="content">
         <div class="container">
-            <form class="main-form" th:action="@{/search/searchText}" method="post" role="form" th:object="${movieSearchDto}">
+            <form class="main-form" th:action="@{/search/searchText}" method="post" role="form" th:object="${movieSearchDto}" >
                 <div class="main1">
                     <input th:field="*{searchText}" class="searchText" type="text" placeholder="What U Want" aria-label="Search"/>
                     <button id="searchBtn" type="submit" class="searchBtn" onclick="search()"> 검색 </button>
                 </div> <!--.main1-->
 
                 <div class="main2">
-                    <div class="genre-check">
-                        <fieldset class="genre-check-box" >
+                    <div class="genre-check" >
+
                             <fieldset class="genre-check-box">
                                 <legend class="genreTitle">장르선택</legend>
-                                <input type="checkbox" class="btn-check" th:field="*{genre}" th:value="코메디" id="btn-check-1" autocomplete="off">
+                                <input type="checkbox" class="btn-check" name="genre" value="코메디" id="btn-check-1" autocomplete="off">
                                 <label class="btn" for="btn-check-1" style="color: rgb(219, 219, 219);">코미디</label>
 
-                                <input type="checkbox" class="btn-check" th:field="*{genre}" th:value="가족" id="btn-check-2" autocomplete="off">
+                                <input type="checkbox" class="btn-check"  name="genre" value="가족" id="btn-check-2" autocomplete="off">
                                 <label class="btn" for="btn-check-2" style="color: rgb(219, 219, 219);">가족</label>
 
-                                <input type="checkbox" class="btn-check" th:field="*{genre}" th:value="로맨스" id="btn-check-3" autocomplete="off">
+                                <input type="checkbox" class="btn-check" name="genre" value="로맨스" id="btn-check-3" autocomplete="off">
                                 <label class="btn" for="btn-check-3" style="color: rgb(219, 219, 219);">로맨스</label>
 
-                                <input type="checkbox" class="btn-check" th:field="*{genre}" th:value="판타지" id="btn-check-4" autocomplete="off">
+                                <input type="checkbox" class="btn-check" name="genre" value="판타지" id="btn-check-4" autocomplete="off">
                                 <label class="btn" for="btn-check-4" style="color: rgb(219, 219, 219);">판타지</label>
 
-                                <input type="checkbox" class="btn-check" th:field="*{genre}" th:value="액션" id="btn-check-5" autocomplete="off">
+                                <input type="checkbox" class="btn-check" name="genre"  value="액션" id="btn-check-5" autocomplete="off">
                                 <label class="btn" for="btn-check-5" style="color: rgb(219, 219, 219);">액션</label>
 
-                                <input type="checkbox" class="btn-check" th:field="*{genre}" th:value="범죄" id="btn-check-6" autocomplete="off">
+                                <input type="checkbox" class="btn-check" name="genre" value="범죄" id="btn-check-6" autocomplete="off">
                                 <label class="btn" for="btn-check-6" style="color: rgb(219, 219, 219);">범죄</label>
 
-                                <input type="checkbox" class="btn-check" th:field="*{genre}" th:value="스릴러" id="btn-check-7" autocomplete="off">
+                                <input type="checkbox" class="btn-check" name="genre" value="스릴러" id="btn-check-7" autocomplete="off">
                                 <label class="btn" for="btn-check-7" style="color: rgb(219, 219, 219);">스릴러</label>
 
-                                <input type="checkbox" class="btn-check" th:field="*{genre}" th:value="재난" id="btn-check-8" autocomplete="off">
+                                <input type="checkbox" class="btn-check" name="genre" value="재난" id="btn-check-8" autocomplete="off">
                                 <label class="btn" for="btn-check-8" style="color: rgb(219, 219, 219);">재난</label>
 
-                                <input type="checkbox" class="btn-check" th:field="*{genre}" th:value="공포" id="btn-check-9" autocomplete="off">
+                                <input type="checkbox" class="btn-check"  name="genre" value="공포" id="btn-check-9" autocomplete="off">
                                 <label class="btn" for="btn-check-9" style="color: rgb(219, 219, 219);">공포</label>
                             </fieldset><!--genre-check-box-->
                     </div><!--genre-check-->
@@ -61,19 +61,19 @@
                     <div class="year-check">
                         <fieldset class="yearBox1">
                             <legend class="yearTitle">연도선택</legend>
-                            <input type="checkbox" class="btn-check" th:field="*{movieYear}" th:value="1980년대" id="option1" autocomplete="off">
+                            <input type="checkbox" class="btn-check" name="movieYear" value="1980년대" id="option1" autocomplete="off">
                             <label class="btn" for="option1" style="color: rgb(219, 219, 219);">1980년대</label>
 
-                            <input type="checkbox" class="btn-check" th:field="*{movieYear}" th:value="1990년대" id="option2" autocomplete="off">
+                            <input type="checkbox" class="btn-check" name="movieYear" value="1990년대" id="option2" autocomplete="off">
                             <label class="btn" for="option2" style="color: rgb(219, 219, 219);">1990년대</label>
 
-                            <input type="checkbox" class="btn-check" th:field="*{movieYear}" th:value="2000년대" id="option3" autocomplete="off">
+                            <input type="checkbox" class="btn-check" name="movieYear" value="2000년대" id="option3" autocomplete="off">
                             <label class="btn" for="option3" style="color: rgb(219, 219, 219);">2000년대</label>
 
-                            <input type="checkbox" class="btn-check" th:field="*{movieYear}" th:value="2010년대" id="option4" autocomplete="off">
+                            <input type="checkbox" class="btn-check" name="movieYear" value="2010년대" id="option4" autocomplete="off">
                             <label class="btn" for="option4" style="color: rgb(219, 219, 219);">2010년대</label>
 
-                            <input type="checkbox" class="btn-check" th:field="*{movieYear}" th:value="2020년대" id="option5" autocomplete="off">
+                            <input type="checkbox" class="btn-check" name="movieYear" value="2020년대" id="option5" autocomplete="off">
                             <label class="btn" for="option5" style="color: rgb(219, 219, 219);">2020년대</label>
                         </fieldset>
                     </div>

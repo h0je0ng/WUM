@@ -5,10 +5,12 @@ import com.hnpl.wum.admin.form.MovieForm;
 import com.hnpl.wum.admin.dto.MovieDto;
 import com.hnpl.wum.admin.dto.MovieMainDto;
 import com.hnpl.wum.admin.mapper.MovieMapper;
+import com.hnpl.wum.require.dto.RequireDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -23,10 +25,8 @@ public class MovieService {
     public Long insertMovie(MovieForm movieForm, MultipartFile movieImgFile) throws  Exception {
 
         MovieDto movieDto = makeMovie(movieForm);
-        movieMapper.insertMovie(movieDto);
 
         movieImgService.saveMoviePoster(movieDto, movieImgFile);
-
 
         System.out.println("movieDto : " + movieDto);
         System.out.println("movieImgFile: " + movieImgFile);

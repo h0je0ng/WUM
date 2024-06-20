@@ -17,5 +17,6 @@ public class RequireDto {
     private String content;
     private String postDate;
     private Integer requireLike;
+    private Long likeSeq;
     private List<RequireDto> userRequireDtoList;
 }

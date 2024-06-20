@@ -24,6 +24,12 @@ public interface RequireMapper {
     //리뷰 디테일
     RequireDto requireDetail(long requireSeq);
 
-    //게시글번호찾기
-    Long findRequireSeq(RequireDto requireDto);
+    //추천추가
+    int insertRecommend(Map map);
+    //추천삭제
+    int removeRecommend(Map map);
+    //추천수 변경
+    int changeRecommend(Map map);
+    //추천했는지 확인
+    Long userCheck(Map map);
 }

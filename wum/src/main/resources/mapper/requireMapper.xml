@@ -5,37 +5,26 @@
 <mapper namespace="com.hnpl.wum.require.mapper.RequireMapper">
 
     <sql id="requireSearchCondition">
-        <if test="searchText != null and searchText != ''">
-            AND (title LIKE CONCAT('%', #{searchText}, '%')
-            OR genre LIKE CONCAT('%', #{searchText}, '%')
-            OR director LIKE CONCAT('%', #{searchText}, '%')
-            OR actor LIKE CONCAT('%', #{searchText}, '%'))
-        </if>
-        <if test="genre != null and genre != ''">
-            AND genre LIKE CONCAT('%', #{genre}, '%')
-        </if>
-        <if test="movieYear != null and movieYear != ''">
+        <if test="requireSearchDto.searchBy != null and requireSearchDto.searchText != '' ">
             <choose>
-                <when test="movieYear == '1980년대'">
-                    AND YEAR(movie_year) BETWEEN 1980 AND 1989
+                <when test="(requireSearchDto.searchBy).equals('title')">
+                    AND title LIKE CONCAT('%',#{requireSearchDto.searchText},'%')
                 </when>
-                <when test="movieYear == '1990년대'">
-                    AND YEAR(movie_year) BETWEEN 1990 AND 1999
+                <when test="(requireSearchDto.searchBy).equals('content')">
+                    AND content LIKE CONCAT('%',#{requireSearchDto.searchText},'%')
                 </when>
-                <when test="movieYear == '2000년대'">
-                    AND YEAR(movie_year) BETWEEN 2000 AND 2009
+                <when test="(requireSearchDto.searchBy).equals('nickname')">
+                    AND nickname LIKE CONCAT('%',#{requireSearchDto.searchText},'%')
                 </when>
-                <when test="movieYear == '2010년대'">
-                    AND YEAR(movie_year) BETWEEN 2010 AND 2019
-                </when>
-                <when test="movieYear == '2020년대'">
-                    AND YEAR(movie_year) BETWEEN 2020 AND 2029
+                <when test="(requireSearchDto.searchBy).equals('titleContent')">
+                    AND (title LIKE CONCAT('%',#{requireSearchDto.searchText},'%')
+                    OR content LIKE CONCAT('%',#{requireSearchDto.searchText},'%'))
                 </when>
             </choose>
         </if>
     </sql>
 
-    <insert id="addRequire" parameterType="requireDto">
+    <insert id="addRequire" parameterType="requireDto" useGeneratedKeys="true" keyColumn="require_seq" keyProperty="requireSeq">
         INSERT INTO `require` (user_seq,title,content) VALUES (#{userSeq},#{title},#{content})
     </insert>
     <update id="updateRequire" parameterType="requireDto">
@@ -46,12 +35,14 @@
     </delete>
 
     <select id="findRequireSeq" parameterType="requireDto">
-        SELECT require_seq FROM `require` WHERE user_seq = #{userSeq} AND title = #{title} AND content = #{content}
+        SELECT require_seq FROM `require` WHERE user_seq = #{userSeq} AND title = #{title} AND content = #{content} AND post_date = #{postDate}
     </select>
+
     <select id="requireList" parameterType="map" resultType="requireDto">
         SELECT require_seq ,r.user_seq, title, content,TO_CHAR(post_date,'YYYY-MM-DD HH24:MI:SS') post_date, require_like, nickname
         FROM `require` r, user u
         WHERE u.user_seq = r.user_seq
+            <include refid="requireSearchCondition"/>
         ORDER BY require_seq DESC LIMIT #{pageSize} OFFSET #{page};
     </select>
 
@@ -65,4 +56,16 @@
         WHERE u.user_seq = r.user_seq AND require_seq = #{requireSeq}
     </select>
 
+    <update id="changeRecommend" parameterType="map">
+        UPDATE `require` SET require_like = #{requireLike} WHERE require_seq = #{requireSeq}
+    </update>
+    <insert id="insertRecommend" parameterType="map">
+        INSERT INTO require_like(user_seq,require_seq) VALUES(#{userSeq},#{requireSeq})
+    </insert>
+    <delete id="removeRecommend" parameterType="map">
+        DELETE FROM require_like WHERE user_seq = #{userSeq} AND require_seq = #{requireSeq} AND like_seq = #{likeSeq}
+    </delete>
+    <select id="userCheck" parameterType="map" resultType="long">
+        SELECT like_seq FROM require_like WHERE user_seq = #{userSeq} AND require_seq = #{requireSeq}
+    </select>
 </mapper>

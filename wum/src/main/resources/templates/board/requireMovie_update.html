@@ -28,14 +28,14 @@
 				<tr>
 					<td width="70" align="center">제목</td>
 					<td width="700">
-						<input type="text" name="title" style="width: 500px; border:hidden" th:field="${requireDto.title}" >
+						<input type="text" name="title" style="width: 500px; border:hidden" th:field="${requireDto.title}" width="700" >
 						<p th:if="${#fields.hasErrors('title')}" th:errors="*{title}" class="fieldError">Incorrect data</p>
 					</td>
 				</tr>
 				<tr>
 					<td align="center"> 내용 </td>
 					<td align="Left">
-						<textarea form="updateBoard" name="content" rows="6" style="color:white; width: 700px; height:500px; border:hidden"  th:field="${requireDto.content}" >
+						<textarea form="updateBoard" name="content" rows="6" style="width: 700px; height:500px; border:hidden"  th:field="${requireDto.content}">
 						</textarea>
 						<p th:if="${#fields.hasErrors('content')}"  th:errors="*{content}" class="fieldError">Incorrect data</p>
 					</td>

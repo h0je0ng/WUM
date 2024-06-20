@@ -5,20 +5,28 @@ import com.hnpl.wum.admin.form.MovieForm;
 import com.hnpl.wum.admin.service.MovieService;
 import com.hnpl.wum.config.PageHandler;
 import com.hnpl.wum.admin.dto.MovieSearchDto;
+import com.hnpl.wum.user.mapper.UserMapper;
+import com.hnpl.wum.user.service.UserService;
+import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.security.Principal;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
 @Controller
 @RequiredArgsConstructor
 public class MovieController {
 
     private final MovieService movieService;
+
+    private final UserService userService;
 
     @PostMapping("/search/searchText")
     public String searchMovies(@RequestParam(value= "page", required = false)Integer page,
@@ -60,4 +68,5 @@ public class MovieController {
 
         return "search/search_movieDetail";
     }
+
 }

@@ -18,5 +18,6 @@
         <typeAlias alias="movieSearchDto" type="com.hnpl.wum.admin.dto.MovieSearchDto"/>
         <typeAlias alias="movieMainDto" type="com.hnpl.wum.admin.dto.MovieMainDto"/>
         <typeAlias alias="requireDto" type="com.hnpl.wum.require.dto.RequireDto"/>
+        <typeAlias alias="requireSearchDto" type="com.hnpl.wum.require.dto.RequireSearchDto"/>
     </typeAliases>
 </configuration>

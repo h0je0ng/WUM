@@ -2,6 +2,7 @@ package com.hnpl.wum.require.controller;
 
 import com.hnpl.wum.config.PageHandler;
 import com.hnpl.wum.require.dto.RequireDto;
+import com.hnpl.wum.require.dto.RequireSearchDto;
 import com.hnpl.wum.require.form.RequireForm;
 import com.hnpl.wum.require.service.RequireService;
 import com.hnpl.wum.user.service.UserService;
@@ -30,7 +31,7 @@ public class RequireController {
 
     //영화요청 게시판 리스트
     @GetMapping("")
-    public String requireList(@RequestParam(value="page", required = false) Integer page, Model model,Principal principal){
+    public String requireList(@RequestParam(value="page", required = false) Integer page, @ModelAttribute("requireSearchDto") RequireSearchDto requireSearchDto, Model model, Principal principal){
         Long userSeq = userService.findUserSeq(principal.getName());
 
         if (page == null) page = 1;
@@ -39,6 +40,7 @@ public class RequireController {
         map.put("page",page * ps -ps);
         map.put("pageSize",ps);
         map.put("userSeq",userSeq);
+        map.put("requireSearchDto",requireSearchDto);
         int totalCount = requireService.countRequire();
         PageHandler pageHandler = new PageHandler(totalCount,ps,page);
         List<RequireDto> requires = requireService.selectList(map);
@@ -77,20 +79,21 @@ public class RequireController {
                                 Model model,
                                 RedirectAttributes redirectAttributes,
                                 Principal principal){
-        Long requireSeq ;
+
+        RequireDto requireDto =new RequireDto();
         Long userSeq = userService.findUserSeq(principal.getName());
+
         if(bindingResult.hasErrors()){
             model.addAttribute("requireForm",requireForm);
             model.addAttribute("userSeq",userSeq);
             return "board/requireMovie_insert";
         }
         try{
-            RequireDto requireDto =new RequireDto();
             requireDto.setUserSeq(userSeq);
             requireDto.setTitle(requireForm.getTitle());
             requireDto.setContent(requireForm.getContent());
 
-            requireSeq = requireService.insertRequire(requireDto);
+            requireService.insertRequire(requireDto);
 
             model.addAttribute("requireDto",requireDto);
             model.addAttribute("userSeq",userSeq);
@@ -100,7 +103,7 @@ public class RequireController {
             return "board/requireMovie_insert";
         }
 
-        return "redirect:/require/detail?requireSeq="+requireSeq;
+        return "redirect:/require/detail?requireSeq="+requireDto.getRequireSeq();
     }
 
     //게시글 업데이트 페이지
@@ -180,5 +183,14 @@ public class RequireController {
         }
 
         return "redirect:/require";
+    }
+
+    @GetMapping("/recommend")
+    public String recommendUp (@RequestParam("requireSeq")Long requireSeq,Principal principal){
+        Long userSeq = userService.findUserSeq(principal.getName());
+
+        requireService.recommend(requireSeq,userSeq);
+
+        return "redirect:/require/detail?requireSeq="+requireSeq;
     }
 }

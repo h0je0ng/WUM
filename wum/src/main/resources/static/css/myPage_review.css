@@ -2,8 +2,6 @@
 *{
     margin: 0;
     padding: 0;
-}
-input{
     color: white;
 }
 body{
@@ -12,6 +10,7 @@ body{
     font-size: 15px;
     line-height: 20px;
 }
+
 a{
     text-decoration: none;
     color: white;
@@ -20,6 +19,14 @@ a{
 ul, ol {
     list-style: none;
 }
+
+.searchText{
+    background-color:#ccc;
+    color:black;
+    outline: none;
+    box-shadow: none;
+}
+
 .poster {
     vertical-align: middle;
     border: 0;

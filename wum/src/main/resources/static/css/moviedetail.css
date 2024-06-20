@@ -1,64 +1,87 @@
+@charset "utf-8";
 * {
-	margin:0;
-	padding:0;
-	background-color: #1f1e1e;
+    margin: 0;
+    padding: 0;
+    color: white;
+    font-size: 16px;
+}
+
+h2 {
+    color: rgb(222, 222, 222);
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 18px;
+}
+
+body {
+    background-color: #1f1e1e;
+    font-family: 'Noto Sans KR', sans-serif;
+    color: white;
+    font-size: 15px;
+    line-height: 20px;
+}
+
+a {
+    text-decoration: none;
+    color: white;
+    cursor: pointer;
+}
+
+img {
+    vertical-align: middle;
+    border: 0;
 }
 
 .wrap {
-	margin: 0 auto;
-	background-color: #1f1e1e;
-	padding-bottom: 10px;
-}
-
-.line {
-	border: solid 5px;
-	color: #2E2E2E;
-	margin-top: -2px;
-	margin-bottom:-2px;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding-bottom: 10px;
+    margin-top: 80px;
 }
 
 .container {
-	position: relative;
+    display: flex;
+    justify-content: flex-start; /* 왼쪽 정렬 */
+    align-items: flex-start;
+    padding: 20px;
+    text-align: left;
+    position: relative;
 }
 
 .poster {
-	margin-top: 80px;
-	width: 250px;
-	height: 480px;
-	margin-bottom: 70px;
+    max-width: 200px;
+    height: auto;
+    margin-right: 60px;
 }
 
 .movie_content {
-	position: absolute;
-	top: 80px;
-	width: 650px;
-	margin-left: 300px;
-	box-sizing: border-box;
-	font-size: 16px;
-	color: #8f8f8f;
+    max-width: 650px;
+    font-size: 16px;
+    color: #8f8f8f;
+    position: relative; /* 자식 요소를 기준으로 배치하기 위해 추가 */
 }
 
 .movie_title {
-	font-size: 30px;
-	font-weight: 500;
+    font-size: 30px;
+    font-weight: 500;
+    display: inline-block; /* 하트 아이콘 옆에 배치되도록 설정 */
 }
-
-.movie_date {
-	font-size: 18px;
-	margin-top: 15px;
-	margin-bottom: 15px;
-}
-
 
 .heart_icon {
     position: absolute;
-    top: 85px;
-    left: 260px;
-	cursor: pointer;
+    top: 15px;
+    left: 19%; /* 제목 바로 옆에 배치되도록 설정 */
+    margin-left: 10px; /* 제목과 하트 사이 간격 */
+    cursor: pointer;
 }
 
 .heart_icon img {
-	width: 30px;
+    width: 30px;
+}
+
+.movie_date, .movie_genre, .movie_director, .movie_actor, .movie_plot {
+    margin-top: 15px;
+    margin-bottom: 15px;
 }
 
 /* 평점과 후기 */
@@ -66,7 +89,7 @@
 	display: inline-block;
 	direction: rtl;
 	border:0;
-	margin-top: 20px;
+	margin: 20px;
 }
 
 .text-bold {
@@ -77,8 +100,10 @@
 	text-align: right;
 }
 
+
 .review_form input[type=radio] {
 	display: none;
+
 }
 
 .review_form label{
@@ -112,7 +137,8 @@ button {
 	color: #8f8f8f;
 }
 
-button:hover {
+
+.wrap button:hover {
 	background-color:#D3D3D3;
 }
 

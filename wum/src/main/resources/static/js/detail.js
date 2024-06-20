@@ -1,17 +1,40 @@
 let files=["/image/heart.jpg", "/image/fullheart.jpg"];
 
-let imgs=[];
-for (i=0; i<files.length; i++) {
-    imgs[i] = new Image();
-    imgs[i].src = files[i];
-}
+var movieSeq = ${movieSeq};
+var userSeq = ${userSeq};
 
-let next = 1;
-function jjim(obj) {
-    obj.src = imgs[next].src;
-    next++;
-    next %= imgs.length;
-}
+$(document).ready(function() {
+    $('#img').click(function(event) {
+        event.preventDefault();
+     $.ajax({
+            type : "POST",
+            url : "/clickLike",
+            dataType : "json",
+            data : "movieSeq="+movieSeq+"&userSeq="+userSeq,
+            error : function(){
+                Rnd.alert("통신 에러","error","확인",function(){});
+            },
+            success : function(jdata) {
+                if(jdata.resultCode == -1){
+                    Rnd.alert("좋아요 오류","error","확인",function(){});
+                }
+                else{
+                    if(jdata.likecheck == 1){
+                        $("#img").attr("src","/image/fullheart.jpg");
+                        $("#likecnt").empty();
+                        $("#likecnt").append(jdata.likecnt);
+                    }
+                    else if (jdata.likecheck == 0){
+                        $("#img").attr("src","/image/heart.jpg");
+                        $("#likecnt").empty();
+                        $("#likecnt").append(jdata.likecnt);
+
+                    }
+                }
+            }
+        });
+ }
+
 
 
 // 리뷰작성 (다시해....../ 별점이랑 같이 표시되야하고 하나만 남기도록)

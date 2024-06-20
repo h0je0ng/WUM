@@ -1,10 +1,8 @@
 document.addEventListener("DOMContentLoaded", function() {
     let searchForm = document.querySelector('.main-form');
 
-     function search(){
-            event.preventDefault();
-    }
-
+    function search() {
+        event.preventDefault();
 
         // 검색어 가져오기
         let searchInput = document.querySelector('.searchText').value;
@@ -31,6 +29,5 @@ document.addEventListener("DOMContentLoaded", function() {
         let formData = new FormData(searchForm);
         formData.append('genre', selectedGenres.join(','));
         formData.append('movieYear', selectedYears.join(','));
-})
+    }
 });
-
