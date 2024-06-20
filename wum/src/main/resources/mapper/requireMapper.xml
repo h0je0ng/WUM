@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hnpl.wum.require.mapper.RequireMapper">
+
+    <sql id="requireSearchCondition">
+        <if test="searchText != null and searchText != ''">
+            AND (title LIKE CONCAT('%', #{searchText}, '%')
+            OR genre LIKE CONCAT('%', #{searchText}, '%')
+            OR director LIKE CONCAT('%', #{searchText}, '%')
+            OR actor LIKE CONCAT('%', #{searchText}, '%'))
+        </if>
+        <if test="genre != null and genre != ''">
+            AND genre LIKE CONCAT('%', #{genre}, '%')
+        </if>
+        <if test="movieYear != null and movieYear != ''">
+            <choose>
+                <when test="movieYear == '1980년대'">
+                    AND YEAR(movie_year) BETWEEN 1980 AND 1989
+                </when>
+                <when test="movieYear == '1990년대'">
+                    AND YEAR(movie_year) BETWEEN 1990 AND 1999
+                </when>
+                <when test="movieYear == '2000년대'">
+                    AND YEAR(movie_year) BETWEEN 2000 AND 2009
+                </when>
+                <when test="movieYear == '2010년대'">
+                    AND YEAR(movie_year) BETWEEN 2010 AND 2019
+                </when>
+                <when test="movieYear == '2020년대'">
+                    AND YEAR(movie_year) BETWEEN 2020 AND 2029
+                </when>
+            </choose>
+        </if>
+    </sql>
+
+    <insert id="addRequire" parameterType="requireDto">
+        INSERT INTO `require` (user_seq,title,content) VALUES (#{userSeq},#{title},#{content})
+    </insert>
+    <update id="updateRequire" parameterType="requireDto">
+        UPDATE `require` SET title = #{title} , content = #{content} WHERE require_seq = #{requireSeq} AND user_seq = #{userSeq}
+    </update>
+    <delete id="deleteRequire" parameterType="map">
+        DELETE FROM `require` WHERE user_seq = #{userSeq} AND require_seq = #{requireSeq}
+    </delete>
+
+    <select id="findRequireSeq" parameterType="requireDto">
+        SELECT require_seq FROM `require` WHERE user_seq = #{userSeq} AND title = #{title} AND content = #{content}
+    </select>
+    <select id="requireList" parameterType="map" resultType="requireDto">
+        SELECT require_seq ,r.user_seq, title, content,TO_CHAR(post_date,'YYYY-MM-DD HH24:MI:SS') post_date, require_like, nickname
+        FROM `require` r, user u
+        WHERE u.user_seq = r.user_seq
+        ORDER BY require_seq DESC LIMIT #{pageSize} OFFSET #{page};
+    </select>
+
+    <select id="countRequire" resultType="int">
+        SELECT count(*) FROM `require`
+    </select>
+
+    <select id="requireDetail" parameterType="long" resultType="requireDto">
+        SELECT require_seq ,r.user_seq, title, content,TO_CHAR(post_date,'YYYY-MM-DD HH24:MI:SS') post_date, require_like, nickname
+        FROM `require` r, user u
+        WHERE u.user_seq = r.user_seq AND require_seq = #{requireSeq}
+    </select>
+
+</mapper>

@@ -1,0 +1,81 @@
+@charset "uft-8";
+*{
+    margin: 0;
+    padding: 0;
+}
+input{
+    color: white;
+}
+body{
+    font-family: 'Noto Sans KR', sans-serif;
+    color: white;
+    font-size: 15px;
+    line-height: 20px;
+}
+a{
+    text-decoration: none;
+    color: white;
+    cursor: pointer;
+}
+ul, ol {
+    list-style: none;
+}
+.poster {
+    vertical-align: middle;
+    border: 0;
+    width:100px;
+    height:150px;
+}
+.order{
+    display: flex;
+}
+.pageList{
+    display: flex;
+}
+.page-link:hover{
+    cursor: pointer;
+}
+.fieldError{
+    color : red;
+}
+.requirePage{
+    margin : 40px auto;
+}
+.infoPage{
+    margin : 40px auto;
+}
+.reviewPage{
+    margin : 40px auto;
+}
+textarea{
+	resize: none;
+}
+.star{
+	direction: rtl;
+}
+button {
+    border: none;
+    outline: none;
+    background-color: inherit ;
+    cursor: pointer;
+    color: white
+}
+
+input[type=radio]{
+	display: none;
+}
+.star label{
+	cursor: pointer;
+	font-size: 20px;
+	color: transparent;
+	text-shadow: 0 0 0 #f0f0f0;
+}
+.star label:hover{
+	text-shadow: 0 0 0 rgba(250, 208, 0, 0.99);
+}
+.star label:hover ~ label{
+	text-shadow: 0 0 0 rgba(250, 208, 0, 0.99);
+}
+.star input[type=radio]:checked ~ label{
+	text-shadow: 0 0 0 rgba(250, 208, 0, 0.99);
+}

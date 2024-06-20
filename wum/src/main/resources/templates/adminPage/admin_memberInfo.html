@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/layout}">
+
+<th:block layout:fragment="css">
+    <link rel="stylesheet" href="./css/memberList.css">
+</th:block>
+
+    <div class="wrap" layout:fragment="content">
+        <h1>회원 작성 게시물</h1>
+        <form class="listform" action="" method="post">
+            <table border="1">
+                <tr>
+                    <th width="20"><input type="checkbox" id="selectAll"></th>
+                    <th width="50">번호</th>
+                    <th width="200">제목</th>
+                    <th width="100">작성일</th>
+                    
+                </tr>
+               
+            </table>
+        </form>
+    </div>  
+
+</html>

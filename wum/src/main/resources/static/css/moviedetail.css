@@ -1,0 +1,121 @@
+* {
+	margin:0;
+	padding:0;
+	background-color: #1f1e1e;
+}
+
+.wrap {
+	margin: 0 auto;
+	background-color: #1f1e1e;
+	padding-bottom: 10px;
+}
+
+.line {
+	border: solid 5px;
+	color: #2E2E2E;
+	margin-top: -2px;
+	margin-bottom:-2px;
+}
+
+.container {
+	position: relative;
+}
+
+.poster {
+	margin-top: 80px;
+	width: 250px;
+	height: 480px;
+	margin-bottom: 70px;
+}
+
+.movie_content {
+	position: absolute;
+	top: 80px;
+	width: 650px;
+	margin-left: 300px;
+	box-sizing: border-box;
+	font-size: 16px;
+	color: #8f8f8f;
+}
+
+.movie_title {
+	font-size: 30px;
+	font-weight: 500;
+}
+
+.movie_date {
+	font-size: 18px;
+	margin-top: 15px;
+	margin-bottom: 15px;
+}
+
+
+.heart_icon {
+    position: absolute;
+    top: 85px;
+    left: 260px;
+	cursor: pointer;
+}
+
+.heart_icon img {
+	width: 30px;
+}
+
+/* 평점과 후기 */
+.review_form fieldset {
+	display: inline-block;
+	direction: rtl;
+	border:0;
+	margin-top: 20px;
+}
+
+.text-bold {
+	color: #8f8f8f;
+}
+
+.review_form fieldset {
+	text-align: right;
+}
+
+.review_form input[type=radio] {
+	display: none;
+}
+
+.review_form label{
+	font-size: 45px;
+	color: transparent;
+	text-shadow: 0 0 0 #f0f0f0;
+}
+
+.review_form label:hover,
+.review_form label:hover ~ label,
+.review_form input[type=radio]:checked ~ label{
+	text-shadow: 0 0 0 rgba(250, 208, 0, 0.99);
+}
+
+.review {
+	width: 800px;
+	padding: 15px;
+	border: solid 1.5px #D3D3D3;
+	border-radius: 5px;
+	font-size: 16px;
+	color: #8f8f8f;
+	margin-bottom: 40px;
+	margin-top: 15px;
+}
+
+button {
+	padding: 13px;
+	border-radius: 5px;
+	border: solid 1.5px #D3D3D3;
+	font-size: 18px;
+	color: #8f8f8f;
+}
+
+button:hover {
+	background-color:#D3D3D3;
+}
+
+#my_review {
+	color: #8f8f8f;
+}
